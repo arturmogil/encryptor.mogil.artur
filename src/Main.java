@@ -1,7 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        System.out.println(" ");
+        Encrypt e = new Encrypt();
+        String text = new String("ab c,.k.k. kgergJ\n " +
+                "JKfds ed.,fgg");
+        System.out.println(text);
+        e.Encrypt(text,1);
+
     }
 
 }
