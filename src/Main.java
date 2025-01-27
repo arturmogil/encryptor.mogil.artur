@@ -1,11 +1,38 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Encrypt e = new Encrypt();
-        String text = new String("ab c,.k.k. kgergJ\n " +
-                "JKfds ed.,fgg");
-        System.out.println(text);
-        e.Encrypt(text,1);
+        UserMenu userMenu = new UserMenu();
 
+        String command;
+        String path;
+        int key;
+
+        if (args.length==3) {
+            command = args[0];
+            path = args[1];
+            key = Integer.parseInt(args[2]);
+            if (key<1) {
+                System.out.println("Key can't be less then 1");
+                System.exit(0);
+            }
+            userMenu.cipherFile(command,path,key);
+        }
+        else if(args.length==0) {
+            Scanner scannerUserInput = new Scanner(System.in);
+            System.out.println("Welcome to the Caesar cipher program!\n" +
+                    "Enter file path:");
+            path = scannerUserInput.nextLine();
+            System.out.println("Enter key for cipher:");
+            key = Integer.parseInt(scannerUserInput.nextLine());
+            if (key < 1) {
+                System.out.println("Key can't be less then 1");
+                System.exit(0);
+            }
+            userMenu.printCommands();
+            command = scannerUserInput.nextLine();
+            userMenu.cipherFile(command, path, key);
+
+        }
     }
-
 }
