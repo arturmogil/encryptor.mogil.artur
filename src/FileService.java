@@ -1,7 +1,7 @@
 import java.io.*;
 
-public class FileService {
-    public void writeToFile(String filePath, String content) {
+class FileService {
+    void writeToFile(String filePath, String content) {
         File originalFile = new File(filePath);
         if (!originalFile.exists()) {
             System.err.println("File not found");
@@ -13,12 +13,11 @@ public class FileService {
         String originalFileDirectory = originalFile.getParent();
 
         if (originalFileName.contains(".")) {
+            int dotIndex = originalFileName.lastIndexOf(".");
             if(originalFileName.contains("[ENCRYPTED]")) {
-                int dotIndex = originalFileName.lastIndexOf(".");
                 encryptedFileName = originalFileName.substring(0, dotIndex) + "[DECRYPTED]" + originalFileName.substring(dotIndex);
             }
             else {
-                int dotIndex = originalFileName.lastIndexOf(".");
                 encryptedFileName = originalFileName.substring(0, dotIndex) + "[ENCRYPTED]" + originalFileName.substring(dotIndex);
             }
         } else {
@@ -39,7 +38,7 @@ public class FileService {
         }
     }
 
-    public String readFromFile(String filePath) {
+    String readFromFile(String filePath) {
         StringBuilder content = new StringBuilder();
         try (FileReader reader = new FileReader(filePath)) {
             int currentChar;

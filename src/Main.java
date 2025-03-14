@@ -1,24 +1,23 @@
 import java.util.Scanner;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
-        UserMenu userMenu = new UserMenu();
 
         String command;
         String path;
         int key;
 
-        if (args.length==3) {
+        if (args.length == 3) {
             command = args[0];
             path = args[1];
             key = Integer.parseInt(args[2]);
-            if (key<1) {
+            if (key < 1) {
                 System.out.println("Key can't be less then 1");
                 System.exit(0);
             }
-            userMenu.cipherFile(command,path,key);
+            UserMenu.cipherFile(command,path,key);
         }
-        else if(args.length==0) {
+        else if(args.length == 0) {
             Scanner scannerUserInput = new Scanner(System.in);
             System.out.println("Welcome to the Caesar cipher program!\n" +
                     "Enter file path:");
@@ -29,10 +28,9 @@ public class Main {
                 System.out.println("Key can't be less then 1");
                 System.exit(0);
             }
-            userMenu.printCommands();
+            UserMenu.printCommands();
             command = scannerUserInput.nextLine();
-            userMenu.cipherFile(command, path, key);
-
+            UserMenu.cipherFile(command, path, key);
         }
     }
 }
